@@ -5,11 +5,17 @@ on:
     branches:
       - main
 
+permissions:
+  issues: write # Grants permission to create issues
+
 jobs:
   create_issue:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
       - name: Create an Issue
         uses: actions/github-script@v6
         with:
