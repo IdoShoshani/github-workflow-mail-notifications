@@ -22,25 +22,19 @@ jobs:
           subject: "New Push to Repository: ${{ github.repository }}"
           to: "shoshani.ido@gmail.com"
           from: "shoshani.ido@gmail.com"
-          content_type: "text/html" # Enable HTML content type
           body: |
-            <!DOCTYPE html>
-            <html>
-            <body>
-              <h1>New Push to Repository: ${{ github.repository }}</h1>
-              <p><strong>Branch:</strong> refs/heads/main</p>
-              <p><strong>Home:</strong> <a href="https://github.com/${{ github.repository }}">https://github.com/${{ github.repository }}</a></p>
-              <p><strong>Commit:</strong> <a href="https://github.com/${{ github.repository }}/commit/${{ github.sha }}">${{ github.sha }}</a></p>
-              <p><strong>Author:</strong> ${{ github.event.head_commit.committer.name }} &lt;${{ github.event.head_commit.committer.email }}&gt;</p>
-              <p><strong>Date:</strong> ${{ github.event.head_commit.timestamp }}</p>
+            Branch: refs/heads/main
+            Home:   https://github.com/${{ github.repository }}
+            Commit: ${{ github.sha }}
+                https://github.com/${{ github.repository }}/commit/${{ github.sha }}
+            Author: ${{ github.event.head_commit.committer.name }} <${{ github.event.head_commit.committer.email }}>
+            Date:   ${{ github.event.head_commit.timestamp }}
 
-              <p><strong>Changed Paths:</strong></p>
-              <p>${{ join(github.event.head_commit.modified, '<br>') }}</p>
+            Changed paths:
+            ${{ github.event.head_commit.modified }}  # This will show the changed paths, you can adjust if needed.
 
-              <p><strong>Log Message:</strong></p>
-              <blockquote>${{ github.event.head_commit.message }}</blockquote>
+            Log Message:
+            -----------
+            ${{ github.event.head_commit.message }}
 
-              <p>To unsubscribe from these emails, change your notification settings at <a href="https://github.com/${{ github.repository }}/settings/notifications">GitHub Notifications</a>.</p>
-            </body>
-            </html>
-          convert_markdown: false # Disable Markdown conversion
+            To unsubscribe from these emails, change your notification settings at https://github.com/${{ github.repository }}/settings/notifications
