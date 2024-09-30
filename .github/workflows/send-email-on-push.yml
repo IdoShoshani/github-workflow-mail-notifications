@@ -20,8 +20,8 @@ jobs:
           username: ${{ secrets.GMAIL_USERNAME }}
           password: ${{ secrets.GMAIL_APP_PASSWORD }}
           subject: "New Push to Repository: ${{ github.repository }}"
-          to: "your-email@gmail.com"
-          from: "your-email@gmail.com"
+          to: ${{ secrets.GMAIL_USERNAME }} # Replace with your real email
+          from: ${{ secrets.GMAIL_USERNAME }} # Replace with your real email
           body: |
             <h1>New Commit to Repository: ${{ github.repository }}</h1>
             <p><strong>Commit Message:</strong> ${{ github.event.head_commit.message }}</p>
