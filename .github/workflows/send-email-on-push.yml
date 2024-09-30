@@ -20,7 +20,7 @@ jobs:
           username: ${{ secrets.GMAIL_USERNAME }}
           password: ${{ secrets.GMAIL_APP_PASSWORD }}
           subject: "New Push to Repository: ${{ github.repository }}"
-          to: "shoshani.ido@gmail.com"
+          to: ${{ github.event.head_commit.committer.email }} # נשלח למייל של מבצע ה-push
           from: "shoshani.ido@gmail.com"
           body: |
             Branch: refs/heads/main
@@ -31,7 +31,7 @@ jobs:
             Date:   ${{ github.event.head_commit.timestamp }}
 
             Changed paths:
-            ${{ github.event.head_commit.modified }}  # This will show the changed paths, you can adjust if needed.
+            ${{ join(github.event.head_commit.modified, '\n') }}  # This will list the changed paths
 
             Log Message:
             -----------
