@@ -32,15 +32,11 @@ jobs:
             <p><strong>Date:</strong> ${{ github.event.head_commit.timestamp }}</p>
 
             <p><strong>Changed Paths:</strong></p>
-            <ul>
-              {% for path in github.event.head_commit.modified %}
-                <li>{{ path }}</li>
-              {% endfor %}
-            </ul>
+            <p>${{ join(github.event.head_commit.modified, '<br>') }}</p>
 
             <p><strong>Log Message:</strong></p>
             <blockquote>${{ github.event.head_commit.message }}</blockquote>
 
             <p>To unsubscribe from these emails, change your notification settings at <a href="https://github.com/${{ github.repository }}/settings/notifications">GitHub Notifications</a>.</p>
-          convert_markdown: true # Optional Markdown to HTML conversion
+          convert_markdown: false # Optional Markdown to HTML conversion
           attachments: logs/build.log # Optional attachment example (if needed)
