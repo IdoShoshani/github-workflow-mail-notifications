@@ -1,0 +1,25 @@
+name: Create Issue on Push
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  create_issue:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Create an Issue
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const issueTitle = `Push event on ${new Date().toLocaleString()}`;
+            const issueBody = `There has been a new push to the main branch.`;
+            const { data: issue } = await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: issueTitle,
+              body: issueBody,
+            });
+            core.info(`Created issue: ${issue.html_url}`);
