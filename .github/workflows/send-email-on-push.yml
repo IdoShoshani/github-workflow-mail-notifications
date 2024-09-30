@@ -36,5 +36,3 @@ jobs:
             Log Message:
             -----------
             ${{ github.event.head_commit.message }}
-
-            To unsubscribe from these emails, change your notification settings at https://github.com/${{ github.repository }}/settings/notifications
